@@ -42,7 +42,7 @@
     <modules>
         <module>cluster-info</module>
         <module>fido-u2f</module>
-        <module>magic-link</module>
+        <module>irma-qr</module>
         <module>themes</module>
         <module>token-validation</module>
     </modules>

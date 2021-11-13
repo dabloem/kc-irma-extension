@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.keycloak.experimental.magic;
+package org.keycloak.experimental.irma;
 
 import org.keycloak.Config;
 import org.keycloak.authentication.Authenticator;
@@ -25,24 +25,26 @@ import org.keycloak.models.KeycloakSession;
 import org.keycloak.models.KeycloakSessionFactory;
 import org.keycloak.provider.ProviderConfigProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class MagicLinkFormAuthenticatorFactory implements AuthenticatorFactory {
+public class IrmaQRAuthenticatorFactory implements AuthenticatorFactory {
 
     public static final String ID = "magic-form";
 
     private static final AuthenticationExecutionModel.Requirement[] REQUIREMENT_CHOICES = {
         AuthenticationExecutionModel.Requirement.REQUIRED,
-        AuthenticationExecutionModel.Requirement.OPTIONAL,
+        AuthenticationExecutionModel.Requirement.ALTERNATIVE,
+        AuthenticationExecutionModel.Requirement.CONDITIONAL,
         AuthenticationExecutionModel.Requirement.DISABLED
     };
 
     @Override
     public Authenticator create(KeycloakSession session) {
-        return new MagicLinkFormAuthenticator();
+        return new IrmaQRFormAuthenticator();
     }
 
     @Override
@@ -52,12 +54,12 @@ public class MagicLinkFormAuthenticatorFactory implements AuthenticatorFactory {
 
     @Override
     public String getReferenceCategory() {
-        return "magic";
+        return "irma";
     }
 
     @Override
     public boolean isConfigurable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -72,17 +74,20 @@ public class MagicLinkFormAuthenticatorFactory implements AuthenticatorFactory {
 
     @Override
     public String getDisplayType() {
-        return "Magic Link";
+        return "IRMA";
     }
 
     @Override
     public String getHelpText() {
-        return "Magic Link";
+        return "IRMA Authentication";
     }
 
     @Override
     public List<ProviderConfigProperty> getConfigProperties() {
-        return null;
+        List<ProviderConfigProperty> configs = new ArrayList<>();
+        configs.add(new ProviderConfigProperty("url" ,"Irma url", "url to IRMA server", ProviderConfigProperty.STRING_TYPE, "http://irma:8088/session"));
+        configs.add(new ProviderConfigProperty("attribute" ,"attribute", "attribute", ProviderConfigProperty.STRING_TYPE, "pbdf.sidn-pbdf.email.email"));
+        return configs;
     }
 
     @Override

@@ -23,18 +23,33 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <name>Magic Link</name>
+    <name>IRMA QR</name>
     <description/>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>magic-link</artifactId>
+    <artifactId>irma-qr</artifactId>
     <packaging>jar</packaging>
+
+    <properties>
+        <version.keycloak>15.0.0</version.keycloak>
+    </properties>
 
     <dependencies>
         <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-core</artifactId>
-            <version>${version.keycloak}</version>
+            <version>15.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

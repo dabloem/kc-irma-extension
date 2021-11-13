@@ -1,11 +1,8 @@
-# Magic Link authenticator for Keycloak
+# IRMA QR authenticator for Keycloak
 
-![magic](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
+Allows users to authenticate through a QR code instead of using a password.
 
-Allows users to authenticate through a link sent to their email address instead of using a password.
-
-Screencast available here: https://youtu.be/oyUsI3QgEq8
-
+![irma](login.png)
 ## Usage
 
 1. Deploy to Keycloak:
@@ -19,6 +16,6 @@ Screencast available here: https://youtu.be/oyUsI3QgEq8
    * Create copy of Browser flow
    * Delete "Username Password Form" and "OTP Form" executors
    * Click on Actions next to "Copy Of Browser Forms" and click "Add execution"
-   * Add "Magic Link"
-   * Set requirement "Required" on "Magic Link" executor
+   * Add "Irma"
+   * Set requirement "Required" on "Irma" executor
    * Click on bindings and switch "Browser flow" to "Copy of browser flow" 
